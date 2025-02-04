@@ -193,7 +193,11 @@ For a **confidential client**, ensure:
    ```
 
 7. **Test Authentication:**  
-   Open [http://localhost:3002/auth/keycloak-init](http://localhost:3002/auth/keycloak-init) in your browser. Log in with the credentials (e.g., "test-user" / "password"). After authentication, you'll be redirected to the profile page. Use the provided logout button to end the session.
+   Open [http://localhost:3002/auth/keycloak-init](http://localhost:3002/auth/keycloak-init) in your browser. Log in with the credentials (e.g., "test-user" / "password"). After authentication, you'll be redirected to the profile page.
+   
+   ![keycloak-demo-profile-page](./assets/pngs/keycloak-demo-profile-page.png)
+   
+   Use the provided logout button to end the session.
 
 ---
 
