@@ -101,31 +101,6 @@ For a **confidential client**, ensure:
 - `Access Type` is set to `confidential`.
 - A client secret is provided.
 
-### PureScript Server Setup
-
-In your PureScript application, use the library to configure and set up your Express server. For example, your `verifyCallback` uses a helper in `KeycloakStrategy.Types` to map incoming Passport profiles to the format expected by KeycloakStrategy:
-
-```haskell
-
-verifyCallback'
-  :: Foreign
-  -> String
-  -> String
-  -> Profile
-  -> Foreign
-  -> Effect (Unit -> Effect Unit)
-verifyCallback' _ accessToken refreshToken profile done = do
-  log "=== Verify Callback ==="
-  log ("Access Token: " <> accessToken)
-  log ("Refresh Token: " <> refreshToken)
-  let rawProfile    = unsafeCoerce profile :: Foreign
-  let nativeProfile = toNativeProfile (fromPassportProfile rawProfile)
-  _ <- callDone done (unsafeToForeign null) nativeProfile
-  pure (\_ -> pure unit)
-```
-
-The `fromPassportProfile` helper (located in `KeycloakStrategy.Types`) performs the necessary key mapping so that your callback remains concise.
-
 ### Running the Demo
 
 1. **Environment Setup:**  
