@@ -97,6 +97,30 @@ Configure your Keycloak realm and client accordingly. For a **public client**, e
 - No client secret is required.
 - PKCE is enabled.
 
+```haskell
+makeKeycloakOptions :: ServerConfig -> KeycloakStrategyOptions
+makeKeycloakOptions config = KeycloakStrategyOptions
+  { ksoRealm: config.realm
+  , ksoAuthServerURL: config.authServerURL
+  , ksoClientID: config.clientId
+  , ksoCallbackURL: config.callbackURL
+  , ksoPublicClient: Just true
+  , ksoClientSecret: Nothing
+  , ksoAuthorizationURL: Nothing
+  , ksoTokenURL: Nothing
+  , ksoSslRequired: Just "none"
+  , ksoScope: Just "openid profile email"
+  , ksoCustomHeaders: Nothing
+  , ksoScopeSeparator: Just " "
+  , ksoSessionKey: Nothing
+  , ksoStore: Nothing
+  , ksoState: Just true
+  , ksoSkipUserProfile: Just false
+  , ksoPkce: Just true
+  , ksoProxy: Nothing
+  }
+```
+
 For a **confidential client**, ensure:
 - `Access Type` is set to `confidential`.
 - A client secret is provided.
