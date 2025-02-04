@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Local Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: #f8f9fa;
+        padding-top: 20px;
+      }
+      .profile-card {
+        max-width: 600px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-card card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title mb-0">User Profile</h3>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">Display Name</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext"><%= userProfile.displayName || 'N/A' %></p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">Username</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext"><%= userProfile.username || 'N/A' %></p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">Email</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext">
+                <%
+                  let emailStr = "N/A";
+                  if (Array.isArray(userProfile.emails) && userProfile.emails.length > 0) {
+                    let emailObj = userProfile.emails[0];
+                    if (emailObj && typeof emailObj === "object" && emailObj.value) {
+                      emailStr = emailObj.value;
+                    } else {
+                      emailStr = emailObj;
+                    }
+                  }
+                %>
+                <%= emailStr %>
+              </p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">User ID</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext"><%= userProfile.id %></p>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">Provider</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext"><%= userProfile.provider %></p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-end">
+          <a class="btn btn-secondary" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+    <!-- Local Bootstrap Bundle JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

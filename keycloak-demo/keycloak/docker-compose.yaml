@@ -1,0 +1,32 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1.0
+    container_name: keycloak-demo-ps
+    environment:
+      KC_DB: dev-file
+      KC_HOSTNAME: keycloak
+      KC_HOSTNAME_STRICT: false  # allow http://localhost:8080 calls via browser
+      KC_HEALTH_ENABLED: true
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_IMPORT: /opt/keycloak/data/import/test-realm.json
+    volumes:
+      - "${HOST_WORKSPACE}/keycloak-demo/keycloak/test-realm.json:/opt/keycloak/data/import/test-realm.json"
+      - test_data_kc_ps:/opt/keycloak/data
+    command:
+      - start-dev
+      - --import-realm
+      - --verbose
+    restart: unless-stopped
+    ports:
+      - "8080:8080"  # For admin console
+      - "9000:9000"  # For health checks
+    networks:
+      - devnetwork
+
+networks:
+  devnetwork:
+    external: true
+
+volumes:
+  test_data_kc_ps:

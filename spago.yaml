@@ -1,0 +1,20 @@
+package:
+  name: passport-keycloak-strategy
+  dependencies:
+    - argonaut
+    - argonaut-codecs
+    - argonaut-generic
+    - console
+    - effect
+    - foreign
+    - nullable
+    - prelude
+    - record
+    - validation
+  test:
+    main: Test.Main
+    dependencies: []
+workspace:
+  packageSet:
+    registry: 63.0.0
+  extraPackages: {}
