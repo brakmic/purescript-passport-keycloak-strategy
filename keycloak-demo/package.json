@@ -13,7 +13,7 @@
     "copy-env": "cp .env* output/Keycloak.Demo.Foreign.Express/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["keycloak", "purescript"],
   "author": "",
   "license": "MIT",
   "description": "",
@@ -26,11 +26,5 @@
     "passport": "^0.7.0",
     "passport-keycloak-oauth2-oidc-portable": "^2.5.3",
     "passport-oauth2": "^1.8.0"
-  },
-  "purescript": {
-    "sources": [
-      "src/**/*.purs",
-      "src/**/*.js"
-    ]
   }
 }
