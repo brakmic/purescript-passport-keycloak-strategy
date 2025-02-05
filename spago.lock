@@ -14,6 +14,7 @@
             "nullable",
             "prelude",
             "record",
+            "unsafe-coerce",
             "validation"
           ],
           "build_plan": [

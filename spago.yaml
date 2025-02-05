@@ -10,6 +10,7 @@ package:
     - nullable
     - prelude
     - record
+    - unsafe-coerce
     - validation
   test:
     main: Test.Main
