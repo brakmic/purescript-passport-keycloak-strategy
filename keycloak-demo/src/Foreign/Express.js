@@ -1,6 +1,5 @@
 import express from 'express';
 import session from 'express-session';
-import crypto from 'crypto';
 import cors from 'cors';
 import ejs from 'ejs';
 import passport from 'passport';
@@ -50,15 +49,6 @@ function validateEnv() {
 }
 
 const isProduction = NODE_ENV === 'production';
-
-function generateCodeVerifier(length = 128) {
-  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
-  return Array.from({ length }, () => possible.charAt(Math.floor(Math.random() * possible.length))).join('');
-}
-
-function generateCodeChallenge(codeVerifier) {
-  return crypto.createHash('sha256').update(codeVerifier).digest('base64url');
-}
 
 export const createServerImpl = () => {
 
@@ -191,13 +181,6 @@ export const createServerImpl = () => {
   
 
   app.get('/auth/keycloak-init', (req, res) => {
-
-    let code_verifier = generateCodeVerifier();
-    let code_challenge = generateCodeChallenge(code_verifier);
-
-    req.session.code_verifier = code_verifier;
-    req.session.code_challenge = code_challenge;
-
     req.session.save((err) => {
       if (err) {
         console.error(`Could not save session!: ${err}`);
@@ -208,16 +191,8 @@ export const createServerImpl = () => {
   });
 
   app.get('/auth/keycloak', (req, res, next) => {
-
-    if (!req.session.code_challenge) {
-      console.error('Missing code_challenge in session:');
-      return res.status(400).send('Invalid authentication request.');
-    }
-
     passport.authenticate('keycloak', {
-      scope: ['openid', 'profile', 'email'],
-      code_challenge: req.session.code_challenge,
-      code_challenge_method: 'S256'
+      scope: ['openid', 'profile', 'email']
     })(req, res, next);
   });
 
