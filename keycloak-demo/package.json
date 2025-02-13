@@ -13,7 +13,13 @@
     "copy-env": "cp .env* output/Keycloak.Demo.Foreign.Express/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["keycloak", "purescript"],
+  "keywords": [
+    "keycloak",
+    "purescript",
+    "oauth2",
+    "oidc",
+    "authn"
+  ],
   "author": "",
   "license": "MIT",
   "description": "",
@@ -24,7 +30,7 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "passport": "^0.7.0",
-    "passport-keycloak-oauth2-oidc-portable": "^2.5.3",
+    "passport-keycloak-oauth2-oidc-portable": "^2.6.0",
     "passport-oauth2": "^1.8.0"
   }
 }
