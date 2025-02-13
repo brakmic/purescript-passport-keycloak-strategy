@@ -16,7 +16,10 @@
   "keywords": [
     "keycloak",
     "strategy",
-    "purescript"
+    "purescript",
+    "oauth2",
+    "oidc",
+    "authn"
   ],
   "author": {
     "name": "Harris Brakmic",
@@ -26,6 +29,6 @@
   "license": "MIT",
   "description": "Passport.js KeycloakStrategy for PureScript",
   "dependencies": {
-    "passport-keycloak-oauth2-oidc-portable": "^2.5.3"
+    "passport-keycloak-oauth2-oidc-portable": "^2.6.0"
   }
 }
