@@ -29,6 +29,6 @@
   "license": "MIT",
   "description": "Passport.js KeycloakStrategy for PureScript",
   "dependencies": {
-    "passport-keycloak-oauth2-oidc-portable": "^2.6.0"
+    "passport-keycloak-oauth2-oidc-portable": "^2.6.1"
   }
 }
